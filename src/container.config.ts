@@ -1,4 +1,3 @@
-import { IncomingMessage } from 'http';
 import { Container } from 'inversify';
 import 'reflect-metadata';
 import { Loaders } from './data/Loaders';
@@ -12,7 +11,7 @@ container
     .to(MovieService)
     .inSingletonScope();
 
-export const createChildContainer = (req: IncomingMessage): Container => {
+export const createChildContainer = (): Container => {
     const childContainer = container.createChild();
 
     childContainer

@@ -9,7 +9,7 @@
         "compile": "tsc",
         "build": "tsc && (cpx package.json dist & cpx package-lock.json dist & cpx ./config/**/*.* dist/config & cpx ./src/**/*.{graphql,json} dist/src & cpx ./test/**/*.{graphql,json,yml,csv,ps1} dist/test)",
         "build-run": "npm run clean && npm run compile && npm run build && cpx .env dist && node ./dist/src/app.js",
-        "package": "cd dist && npm install && echo x-platform zip?",
+        "package": "cd dist && npm install --production && echo x-platform zip?",
         "test": "npx mocha --no-timeouts --colors -r ts-node/register test/**/*.spec.ts",
         "test:unit": "npx mocha --no-timeouts --colors -r ts-node/register test/unit/**/*.spec.ts",
         "test:integration": "npx mocha --no-timeouts --colors -r ts-node/register test/integration/**/*.spec.ts",
@@ -18,6 +18,8 @@
     },
     "dependencies": {
         "apollo-server": "^2.8.1",
+        "apollo-server-core": "^2.8.1",
+        "apollo-server-lambda": "^2.8.1",
         "approvals": "^3.0.5",
         "artillery": "^1.6.0-24",
         "chai": "^4.2.0",
@@ -44,6 +46,7 @@
         "yamlify-object-colors": "^1.0.3"
     },
     "devDependencies": {
+        "@types/aws-lambda": "^8.10.31",
         "@types/chai": "^4.2.0",
         "@types/config": "0.0.34",
         "@types/dotenv": "^6.1.1",
