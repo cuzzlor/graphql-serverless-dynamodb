@@ -1,0 +1,13 @@
+{
+    "graphql": {
+        "debug": true,
+        "tracing": true
+    },
+    "logging": {
+        "transports": {
+            "console": {
+                "enabled": true
+            }
+        }
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "name": "graphql-template",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.ts",
+    "scripts": {
+        "lint": "tslint ./src/**/*.ts",
+        "clean": "rimraf dist",
+        "compile": "tsc",
+        "build": "tsc && (cpx package.json dist & cpx package-lock.json dist & cpx ./config/**/*.* dist/config & cpx ./src/**/*.{graphql,json} dist/src & cpx ./test/**/*.{graphql,json,yml,csv,ps1} dist/test)",
+        "build-run": "npm run clean && npm run compile && npm run build && cpx .env dist && node ./dist/src/app.js",
+        "package": "cd dist && npm install && echo x-platform zip?",
+        "test": "npx mocha --no-timeouts --colors -r ts-node/register test/**/*.spec.ts",
+        "test:unit": "npx mocha --no-timeouts --colors -r ts-node/register test/unit/**/*.spec.ts",
+        "test:integration": "npx mocha --no-timeouts --colors -r ts-node/register test/integration/**/*.spec.ts",
+        "test:perf": "artillery -o test/performance/results/output.json run test/performance/artillery.yml",
+        "test:perf-report": "artillery report test/performance/results/output.json -o test/performance/results/output.html"
+    },
+    "dependencies": {
+        "apollo-server": "^2.8.1",
+        "approvals": "^3.0.5",
+        "artillery": "^1.6.0-24",
+        "chai": "^4.2.0",
+        "config": "^3.2.2",
+        "cpx": "^1.5.0",
+        "dataloader": "^1.4.0",
+        "dotenv": "^8.0.0",
+        "graphql": "^14.4.2",
+        "graphql-tag": "^2.10.1",
+        "inversify": "^5.0.1",
+        "logform": "^2.1.2",
+        "mocha": "^6.2.0",
+        "prettier": "^1.18.2",
+        "reflect-metadata": "^0.1.13",
+        "ts-node": "^8.3.0",
+        "tslint": "^5.18.0",
+        "tslint-config-prettier": "^1.18.0",
+        "tslint-eslint-rules": "^5.4.0",
+        "typeorm": "^0.2.18",
+        "typescript": "^3.5.3",
+        "winston": "^3.2.1",
+        "winston-transport": "^4.3.0",
+        "yamlify-object": "^0.5.1",
+        "yamlify-object-colors": "^1.0.3"
+    },
+    "devDependencies": {
+        "@types/chai": "^4.2.0",
+        "@types/config": "0.0.34",
+        "@types/dotenv": "^6.1.1",
+        "@types/mocha": "^5.2.7",
+        "ts-node-dev": "^1.0.0-pre.40"
+    }
+}

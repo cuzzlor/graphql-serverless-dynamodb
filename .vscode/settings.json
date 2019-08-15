@@ -1,0 +1,13 @@
+{
+    "eslint.autoFixOnSave": true,
+    "editor.formatOnSave": true,
+    "mochaExplorer.files": "test/**/*.spec.ts",
+    "mochaExplorer.require": "ts-node/register",
+    "mochaExplorer.debuggerPort": 9228,
+    "mochaExplorer.timeout": 50000,
+    "mochaExplorer.env": {
+        "NODE_ENV": "development"
+    },
+    "mochaExplorer.mochaPath": "node_modules/mocha",
+    "mochaExplorer.logpanel": false
+}
