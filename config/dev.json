@@ -6,7 +6,8 @@
     "logging": {
         "transports": {
             "console": {
-                "enabled": true
+                "enabled": true,
+                "pretty": true
             }
         }
     }
