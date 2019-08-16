@@ -6,7 +6,7 @@
     "mochaExplorer.debuggerPort": 9228,
     "mochaExplorer.timeout": 50000,
     "mochaExplorer.env": {
-        "NODE_ENV": "development"
+        "NODE_ENV": "dev"
     },
     "mochaExplorer.mochaPath": "node_modules/mocha",
     "mochaExplorer.logpanel": false

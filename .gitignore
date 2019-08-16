@@ -65,3 +65,6 @@ dist
 
 # ignore perf test results
 test/performance/results
+
+# ignore cloudformation output template
+serverless-output.yaml

@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Lambda GraphQL function + DynamoDB.
+Parameters:
+    EnvName:
+        Type: String
+        Description: Choose 'test' or 'prod'. This generates an alias, stage and
+            sets NODE_ENV.
+        AllowedValues:
+            - test
+            - prod
+        Default: test
+Outputs:
+    LambdaFunctionName:
+        Value: !Ref GraqhQLLambdaFunction
+    LambdaFunctionARN:
+        Description: Lambda function ARN.
+        Value:
+            'Fn::GetAtt':
+                - GraqhQLLambdaFunction
+                - Arn
+        Export:
+            Name: !Sub LambdaARN-${EnvName}
+Resources:
+    GraqhQLLambdaFunction:
+        Type: AWS::Serverless::Function
+        Properties:
+            Description: An AWS Lambda GraphQL function.
+            FunctionName: !Sub graphql-lambda-function-${EnvName}
+            AutoPublishAlias: !Ref EnvName
+            Handler: src/lambda.handler
+            CodeUri: .
+            Runtime: nodejs10.x
+            MemorySize: 128
+            Timeout: 10
+            Events:
+                AnyRequest:
+                    Type: Api
+                    Properties:
+                        Path: /graphql
+                        Method: ANY
+            Environment:
+                Variables:
+                    NODE_ENV: !Ref EnvName
