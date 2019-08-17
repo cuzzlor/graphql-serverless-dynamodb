@@ -4,8 +4,7 @@ Description: An AWS Lambda GraphQL function + DynamoDB.
 Parameters:
     EnvName:
         Type: String
-        Description: Choose 'test' or 'prod'. This generates an alias, stage and
-            sets NODE_ENV.
+        Description: Choose 'test' or 'prod'. This generates an alias, stage and sets NODE_ENV.
         AllowedValues:
             - test
             - prod
@@ -21,6 +20,9 @@ Outputs:
                 - Arn
         Export:
             Name: !Sub LambdaARN-${EnvName}
+    ApiURL:
+        Description: 'API endpoint URL for the environment'
+        Value: !Sub https://${GraqhQLApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${EnvName}/graphql
 Resources:
     GraqhQLLambdaFunction:
         Type: AWS::Serverless::Function
@@ -31,14 +33,21 @@ Resources:
             Handler: src/lambda.handler
             CodeUri: .
             Runtime: nodejs10.x
-            MemorySize: 128
+            MemorySize: 256
             Timeout: 10
+            Tracing: Active
             Events:
                 AnyRequest:
                     Type: Api
                     Properties:
                         Path: /graphql
                         Method: ANY
+                        RestApiId: !Ref GraqhQLApiGateway
             Environment:
                 Variables:
                     NODE_ENV: !Ref EnvName
+    GraqhQLApiGateway:
+        Type: AWS::Serverless::Api
+        Properties:
+            StageName: !Ref EnvName
+            TracingEnabled: True
