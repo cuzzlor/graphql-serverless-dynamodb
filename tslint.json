@@ -3,7 +3,8 @@
     "rules": {
         "interface-name": false,
         "object-literal-sort-keys": false,
-        "variable-name": [true, "check-format"]
+        "variable-name": [true, "check-format"],
+        "no-implicit-dependencies": [true, "dev"]
     },
     "exclude": ["node_modules"]
 }

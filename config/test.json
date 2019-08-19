@@ -1,12 +1,15 @@
 {
     "graphql": {
         "debug": true,
-        "tracing": true
+        "tracing": true,
+        "playground": {
+            "endpoint": "/test/graphql"
+        }
     },
     "logging": {
-        "transports": {
-            "console": {
-                "enabled": true
+        "loggers": {
+            "default": {
+                "defaultMeta": { "environment": "test" }
             }
         }
     }

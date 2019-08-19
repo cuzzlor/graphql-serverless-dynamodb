@@ -6,8 +6,13 @@
     "logging": {
         "transports": {
             "console": {
-                "enabled": true,
                 "pretty": true
+            }
+        },
+        "loggers": {
+            "default": {
+                "level": "debug",
+                "defaultMeta": { "environment": "dev" }
             }
         }
     }

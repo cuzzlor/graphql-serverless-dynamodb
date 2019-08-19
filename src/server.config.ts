@@ -13,4 +13,7 @@ export const serverConfigFactory = (context?: Context | ContextFunction): Config
     context,
     debug: config.get<boolean>('graphql.debug'),
     tracing: config.get<boolean>('graphql.tracing'),
+    playground: {
+        endpoint: config.get<string>('graphql.playground.endpoint'),
+    },
 });

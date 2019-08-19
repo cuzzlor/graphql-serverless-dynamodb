@@ -1,13 +1,21 @@
 {
     "graphql": {
         "debug": false,
-        "tracing": false
+        "tracing": false,
+        "playground": {
+            "endpoint": "/graphql"
+        }
     },
     "logging": {
         "transports": {
             "console": {
-                "enabled": false,
+                "enabled": true,
                 "pretty": false
+            }
+        },
+        "loggers": {
+            "default": {
+                "level": "info"
             }
         }
     }

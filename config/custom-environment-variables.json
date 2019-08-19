@@ -1,1 +1,9 @@
-{}
+{
+    "logging": {
+        "transports": {
+            "console": {
+                "enabled": "CONSOLE_LOGGING_ENABLED"
+            }
+        }
+    }
+}

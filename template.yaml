@@ -9,20 +9,6 @@ Parameters:
             - test
             - prod
         Default: test
-Outputs:
-    LambdaFunctionName:
-        Value: !Ref GraqhQLLambdaFunction
-    LambdaFunctionARN:
-        Description: Lambda function ARN.
-        Value:
-            'Fn::GetAtt':
-                - GraqhQLLambdaFunction
-                - Arn
-        Export:
-            Name: !Sub LambdaARN-${EnvName}
-    ApiURL:
-        Description: 'API endpoint URL for the environment'
-        Value: !Sub https://${GraqhQLApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${EnvName}/graphql
 Resources:
     GraqhQLLambdaFunction:
         Type: AWS::Serverless::Function
@@ -51,3 +37,17 @@ Resources:
         Properties:
             StageName: !Ref EnvName
             TracingEnabled: True
+Outputs:
+    LambdaFunctionName:
+        Value: !Ref GraqhQLLambdaFunction
+    LambdaFunctionARN:
+        Description: Lambda function ARN.
+        Value:
+            'Fn::GetAtt':
+                - GraqhQLLambdaFunction
+                - Arn
+        Export:
+            Name: !Sub LambdaARN-${EnvName}
+    ApiURL:
+        Description: 'API endpoint URL for the environment'
+        Value: !Sub https://${GraqhQLApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${EnvName}/graphql

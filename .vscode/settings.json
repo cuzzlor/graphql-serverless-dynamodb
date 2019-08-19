@@ -9,5 +9,8 @@
         "NODE_ENV": "dev"
     },
     "mochaExplorer.mochaPath": "node_modules/mocha",
-    "mochaExplorer.logpanel": false
+    "mochaExplorer.logpanel": false,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    }
 }

@@ -1,7 +1,7 @@
+import config from 'config';
 import { format, Format, TransformableInfo } from 'logform';
-import { createLogger, transports } from 'winston';
+import { createLogger, LoggerOptions, transports } from 'winston';
 import * as Transport from 'winston-transport';
-import config from './config.config';
 
 export const defaultTransports: Transport[] = [];
 
@@ -16,11 +16,11 @@ if (config.get<boolean>('logging.transports.console.enabled')) {
         consoleFormat = format.combine(
             format.colorize(),
             format.printf((info: TransformableInfo) => {
-                const { level, message, ...meta } = info;
+                const { level, message, environment, ...meta } = info;
                 const yaml = yamlifyObject(meta, {
                     colors: yamlifyColors,
                 });
-                return `[${level}] ${message}${yaml}`;
+                return `[${level}] ${message}${yaml}`; // throw away 'environment' for pretty console output
             }),
         );
     } else {
@@ -37,4 +37,5 @@ if (config.get<boolean>('logging.transports.console.enabled')) {
 export const logger = createLogger({
     level: 'info',
     transports: defaultTransports,
+    ...config.get<Partial<LoggerOptions>>('logging.loggers.default'),
 });

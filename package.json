@@ -4,7 +4,7 @@
     "description": "",
     "main": "app.ts",
     "scripts": {
-        "run": "node -r ts-node/register ./src/app.ts",
+        "run": "SET NODE_ENV=dev&& SET PORT=3000 && node -r ts-node/register ./src/app.ts",
         "lint": "tslint ./src/**/*.ts",
         "clean": "rimraf dist",
         "compile": "tsc --project .",
@@ -27,7 +27,6 @@
         "apollo-server-lambda": "^2.8.1",
         "config": "^3.2.2",
         "dataloader": "^1.4.0",
-        "dotenv": "^8.0.0",
         "graphql": "^14.4.2",
         "graphql-tag": "^2.10.1",
         "inversify": "^5.0.1",
