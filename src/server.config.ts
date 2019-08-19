@@ -3,6 +3,7 @@ import { Context, ContextFunction } from 'apollo-server-core';
 import config from 'config';
 import * as fs from 'fs';
 import * as path from 'path';
+import { LoggingExtension } from './extensions/LoggingExtension';
 import { resolvers as movieResolvers } from './resolvers/movie';
 
 const typeDefs = fs.readFileSync(path.join(__dirname, 'schema/schema.graphql'), 'utf8');
@@ -16,4 +17,5 @@ export const serverConfigFactory = (context?: Context | ContextFunction): Config
     playground: {
         endpoint: config.get<string>('graphql.playground.endpoint'),
     },
+    extensions: [() => new LoggingExtension()],
 });
