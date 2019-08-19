@@ -11,7 +11,7 @@ export class Loaders {
 
     constructor(@inject(TYPES.MovieService) movieService: MovieService) {
         this.movieLoader = new DataLoader<MovieQueryInput, Movie[]>(async (keys: MovieQueryInput[]) =>
-            keys.map(key => []),
+            Promise.all(keys.map(key => movieService.query(key))),
         );
     }
 }

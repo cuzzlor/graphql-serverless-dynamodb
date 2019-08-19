@@ -18,5 +18,8 @@
                 "level": "info"
             }
         }
+    },
+    "dynamodb": {
+        "tableNamePrefix": ""
     }
 }

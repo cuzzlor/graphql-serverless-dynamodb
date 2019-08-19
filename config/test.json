@@ -12,5 +12,8 @@
                 "defaultMeta": { "environment": "test" }
             }
         }
+    },
+    "dynamodb": {
+        "tableNamePrefix": "test_"
     }
 }

@@ -9,8 +9,14 @@ Parameters:
             - test
             - prod
         Default: test
+Mappings:
+    TablePrefixMap:
+        test:
+            Prefix: 'test_'
+        prod:
+            Prefix: ''
 Resources:
-    GraqhQLLambdaFunction:
+    GraphQLLambdaFunction:
         Type: AWS::Serverless::Function
         Properties:
             Description: An AWS Lambda GraphQL function.
@@ -19,7 +25,7 @@ Resources:
             Handler: src/lambda.handler
             CodeUri: .
             Runtime: nodejs10.x
-            MemorySize: 256
+            MemorySize: 128
             Timeout: 10
             Tracing: Active
             Events:
@@ -28,26 +34,48 @@ Resources:
                     Properties:
                         Path: /graphql
                         Method: ANY
-                        RestApiId: !Ref GraqhQLApiGateway
+                        RestApiId: !Ref GraphQLApiGateway
             Environment:
                 Variables:
                     NODE_ENV: !Ref EnvName
-    GraqhQLApiGateway:
+    GraphQLApiGateway:
         Type: AWS::Serverless::Api
         Properties:
             StageName: !Ref EnvName
             TracingEnabled: True
+    MoviesTable:
+        Type: AWS::DynamoDB::Table
+        Properties:
+            TableName: !Join
+                - ''
+                - - !FindInMap [TablePrefixMap, !Ref EnvName, Prefix]
+                  - 'Movies'
+            BillingMode: PAY_PER_REQUEST
+            KeySchema:
+                - AttributeName: Year
+                  KeyType: HASH
+                - AttributeName: Title
+                  KeyType: RANGE
+            AttributeDefinitions:
+                - AttributeName: Year
+                  AttributeType: N
+                - AttributeName: Title
+                  AttributeType: S
 Outputs:
     LambdaFunctionName:
-        Value: !Ref GraqhQLLambdaFunction
+        Value: !Ref GraphQLLambdaFunction
     LambdaFunctionARN:
         Description: Lambda function ARN.
         Value:
             'Fn::GetAtt':
-                - GraqhQLLambdaFunction
+                - GraphQLLambdaFunction
                 - Arn
-        Export:
-            Name: !Sub LambdaARN-${EnvName}
     ApiURL:
         Description: 'API endpoint URL for the environment'
-        Value: !Sub https://${GraqhQLApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${EnvName}/graphql
+        Value: !Sub https://${GraphQLApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${EnvName}/graphql
+    MoviesTableARN:
+        Description: DynamoDB Movies table ARN.
+        Value:
+            'Fn::GetAtt':
+                - MoviesTable
+                - Arn
