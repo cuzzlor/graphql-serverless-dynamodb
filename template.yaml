@@ -49,17 +49,17 @@ Resources:
             TableName: !Join
                 - ''
                 - - !FindInMap [TablePrefixMap, !Ref EnvName, Prefix]
-                  - 'Movies'
+                  - 'movies'
             BillingMode: PAY_PER_REQUEST
             KeySchema:
-                - AttributeName: Year
+                - AttributeName: year
                   KeyType: HASH
-                - AttributeName: Title
+                - AttributeName: title
                   KeyType: RANGE
             AttributeDefinitions:
-                - AttributeName: Year
+                - AttributeName: year
                   AttributeType: N
-                - AttributeName: Title
+                - AttributeName: title
                   AttributeType: S
 Outputs:
     LambdaFunctionName:

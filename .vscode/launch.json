@@ -20,6 +20,30 @@
                 "PORT": "3000"
             },
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "debug-batch-load",
+            "runtimeExecutable": "npx",
+            "runtimeArgs": [
+                "node",
+                "-r",
+                "ts-node/register",
+                "--inspect-brk=9229",
+                "${workspaceFolder}/src/batch-load.ts",
+                "../data/moviedata.json"
+            ],
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "port": 9229,
+            "restart": true,
+            "timeout": 15000,
+            "env": {
+                "NODE_ENV": "dev",
+                "PORT": "3000"
+            },
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
