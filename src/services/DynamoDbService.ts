@@ -12,13 +12,16 @@ export class DynamoDbService {
         this.mapper = mapper;
     }
 
-    public async putItems<T>(items: T[]): Promise<AsyncIterableIterator<T>> {
-        try {
-            return await this.mapper.batchPut(items);
-        } catch (error) {
-            logger.error(error.message, { error });
-            throw error;
+    public async putItems<T>(items: T[]) {
+        const batchReportSize = 100;
+        let persisted = 0;
+        const log = () => logger.verbose(`batch put ${persisted} of ${items.length}`);
+        for await (const _ of this.mapper.batchPut<T>(items)) {
+            if (++persisted % batchReportSize === 0) {
+                log();
+            }
         }
+        log();
     }
 
     public async batchLoadFromFile(path: string, valueConstructor: ZeroArgumentsConstructor<any>) {
