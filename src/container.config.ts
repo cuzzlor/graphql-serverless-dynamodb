@@ -4,6 +4,7 @@ import config from 'config';
 import { Container } from 'inversify';
 import 'reflect-metadata';
 import { Loaders } from './data/Loaders';
+import { DynamoDbService } from './services/DynamoDbService';
 import { MovieService } from './services/MovieService';
 import { TYPES } from './TYPES';
 
@@ -14,6 +15,11 @@ container
     .toConstantValue(
         new DataMapper({ client: new DynamoDB(), tableNamePrefix: config.get<string>('dynamodb.tableNamePrefix') }),
     );
+
+container
+    .bind<DynamoDbService>(TYPES.DynamoDbService)
+    .to(DynamoDbService)
+    .inSingletonScope();
 
 container
     .bind<MovieService>(TYPES.MovieService)
