@@ -1,0 +1,31 @@
+{
+  "data": {
+    "movies": [
+      {
+        "info": {
+          "actors": [
+            "Ben Affleck",
+            "Gemma Arterton",
+            "Justin Timberlake"
+          ],
+          "directors": [
+            "Brad Furman"
+          ],
+          "genres": [
+            "Crime",
+            "Drama",
+            "Thriller"
+          ],
+          "imageUrl": "http://ia.media-imdb.com/images/M/MV5BMTU5OTA0MjI4Ml5BMl5BanBnXkFtZTgwMTgxOTQwMDE@._V1_SX400_.jpg",
+          "plot": "When a poor college student who cracks an online poker game goes bust, he arranges a face-to-face with the man he thinks cheated him, a sly offshore entrepreneur.",
+          "rank": 35,
+          "rating": 5.4,
+          "releaseDate": "2013-09-25T00:00:00Z",
+          "runningTimeSecs": 5460
+        },
+        "title": "Runner Runner",
+        "year": 2013
+      }
+    ]
+  }
+}

@@ -13,7 +13,7 @@ approvals.configure({
 });
 
 // for CI builds, use gitdiff for CLI reporting
-if (config.util.getEnv('NODE_ENV') !== 'development') {
+if (config.util.getEnv('NODE_ENV') !== 'dev') {
     approvals.configure({
         reporters: ['gitdiff'],
     });
