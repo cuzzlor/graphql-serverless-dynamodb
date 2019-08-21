@@ -9,8 +9,10 @@
         "clean": "rimraf dist",
         "compile": "tsc --project .",
         "git-describe": "node -r ts-node/register ./util/git-describe.ts ./dist/.git-info",
-        "build": "npm run clean && mkdir dist && npm run git-describe && npm run compile && (cpx package.json dist & cpx package-lock.json dist & cpx ./config/**/*.* dist/config & cpx ./src/**/*.{graphql,json} dist/src & cpx ./test/**/*.{graphql,json,yml,csv,ps1} dist/test) && cd dist && npm install --production && cd ..",
-        "build:run": "cpx .env dist && cd dist && node ./dist/src/app.js",
+        "_build": "npm run clean && mkdir dist && npm run git-describe && npm run compile && (cpx package.json dist & cpx package-lock.json dist & cpx ./config/**/*.* dist/config & cpx ./src/**/*.{graphql,json} dist/src & cpx ./test/**/*.{graphql,json,yml,csv,ps1} dist/test) && cd dist && npm install --production && cd ..",
+        "_built": "cd dist && SET NODE_ENV=dev&& SET PORT=3000&& dotenv -e ../.env -- node ./src/app.js",
+        "webpack": "npx webpack --mode production",
+        "build": "npm run clean && mkdir dist && npm run git-describe && npm run webpack && (cpx package.json dist & cpx package-lock.json dist & cpx ./config/**/*.* dist/config & cpx ./src/**/*.{graphql,json} dist/src & cpx ./test/**/*.{graphql,json,yml,csv,ps1} dist/test)",
         "package:zip": "npm run build && cd dist && rimraf ../package.zip && bestzip ../package.zip *",
         "package": "npm run build && cpx template.yaml dist && cd dist && aws cloudformation package --template-file template.yaml --output-template-file ../serverless-output.yaml --s3-bucket curry.laksa.lambda.graphql",
         "deploy-stack": "aws cloudformation deploy --template-file serverless-output.yaml --capabilities CAPABILITY_IAM --stack-name graphql-serverless --parameter-overrides EnvName=test",
@@ -63,11 +65,14 @@
         "json2csv": "^4.5.2",
         "mocha": "^6.2.0",
         "prettier": "^1.18.2",
+        "ts-loader": "^6.0.4",
         "ts-node": "^8.3.0",
         "ts-node-dev": "^1.0.0-pre.40",
         "tslint": "^5.18.0",
         "tslint-config-prettier": "^1.18.0",
         "tslint-eslint-rules": "^5.4.0",
-        "typescript": "^3.5.3"
+        "typescript": "^3.5.3",
+        "webpack": "^4.39.2",
+        "webpack-cli": "^3.3.7"
     }
 }
