@@ -1,18 +1,23 @@
 import { GraphQLExtension } from 'apollo-server';
 import { GraphQLResponse } from 'graphql-extensions';
-import { logger } from '../logger.config';
+import { Logger } from 'winston';
+import { GraphQLContext } from '../GraphQLContext';
+import { TYPES } from '../TYPES';
 
-export class LoggingExtension<TContext = any> extends GraphQLExtension<TContext> {
+export class LoggingExtension extends GraphQLExtension<GraphQLContext> {
     public willSendResponse?({
         context,
         graphqlResponse: response,
     }: {
         graphqlResponse: GraphQLResponse;
-        context: TContext;
-    }): void | { graphqlResponse: GraphQLResponse; context: TContext } {
+        context: GraphQLContext;
+    }): void | { graphqlResponse: GraphQLResponse; context: GraphQLContext } {
+        const logger = context.container.get<Logger>(TYPES.RequestContextLogger);
+
         if (response.errors) {
             logger.error('graphql errors', { errors: response.errors });
         }
+
         if (
             response.extensions &&
             response.extensions.tracing &&

@@ -3,7 +3,9 @@ import { DynamoDB } from 'aws-sdk';
 import config from 'config';
 import { Container } from 'inversify';
 import 'reflect-metadata';
+import { Logger } from 'winston';
 import { Loaders } from './data/Loaders';
+import { createDefaultLogger } from './logger.config';
 import { DynamoDbService } from './services/DynamoDbService';
 import { MovieService } from './services/MovieService';
 import { TYPES } from './TYPES';
@@ -26,13 +28,20 @@ container
     .to(MovieService)
     .inSingletonScope();
 
-export const createChildContainer = (): Container => {
+export const createChildContainer = (options?: { defaultLoggingMeta: any }): Container => {
     const childContainer = container.createChild();
 
     childContainer
         .bind<Loaders>(TYPES.DataLoaders)
         .to(Loaders)
         .inSingletonScope();
+
+    const requestContextLogger = createDefaultLogger();
+    if (options && options.defaultLoggingMeta) {
+        requestContextLogger.configure({ defaultMeta: options.defaultLoggingMeta });
+    }
+
+    childContainer.bind<Logger>(TYPES.RequestContextLogger).toConstantValue(requestContextLogger);
 
     return childContainer;
 };

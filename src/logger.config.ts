@@ -34,8 +34,10 @@ if (config.get<boolean>('logging.transports.console.enabled')) {
     );
 }
 
-export const logger = createLogger({
-    level: 'info',
-    transports: defaultTransports,
-    ...config.get<Partial<LoggerOptions>>('logging.loggers.default'),
-});
+export const createDefaultLogger = () =>
+    createLogger({
+        transports: defaultTransports,
+        ...config.get<Partial<LoggerOptions>>('logging.loggers.default'),
+    });
+
+export const logger = createDefaultLogger();

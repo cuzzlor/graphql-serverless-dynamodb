@@ -3,4 +3,5 @@ export const TYPES = {
     DynamoDbService: Symbol('DynamoDbService'),
     DataLoaders: Symbol('DataLoaders'),
     DataMapper: Symbol('DataMapper'),
+    RequestContextLogger: Symbol('RequestContextLogger'),
 };

@@ -13,9 +13,12 @@ const server = new ApolloServer(
             event: APIGatewayProxyEvent | APIGatewayProxyEvent;
             context: APIGatewayEventRequestContext;
         }) => {
-            // logger.debug('creating context for apollo-server-lambda handler', { event, context });
+            const container = createChildContainer({
+                defaultLoggingMeta: { requestId: event.requestContext.requestId },
+            });
+
             return {
-                container: createChildContainer(),
+                container,
                 event,
                 context,
             };
