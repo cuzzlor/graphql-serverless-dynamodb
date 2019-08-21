@@ -24,8 +24,15 @@ export class DynamoDbService {
         log();
     }
 
-    public async batchLoadFromFile(path: string, valueConstructor: ZeroArgumentsConstructor<any>) {
-        const items: any[] = JSON.parse(fs.readFileSync(path, 'utf8'));
+    public async batchLoadFromFile(
+        path: string,
+        valueConstructor: ZeroArgumentsConstructor<any>,
+        mapper?: (value: any) => any,
+    ) {
+        let items: any[] = JSON.parse(fs.readFileSync(path, 'utf8'));
+        if (mapper) {
+            items = items.map(mapper);
+        }
         this.batchPut(items.map(item => Object.assign(new valueConstructor(), item)));
     }
 }
