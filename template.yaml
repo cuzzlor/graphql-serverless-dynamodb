@@ -28,6 +28,9 @@ Resources:
             MemorySize: 128
             Timeout: 10
             Tracing: Active
+            Policies:
+                - DynamoDBCrudPolicy:
+                      TableName: !Ref MoviesTable
             Events:
                 AnyRequest:
                     Type: Api

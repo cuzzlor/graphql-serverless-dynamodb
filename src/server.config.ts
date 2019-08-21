@@ -17,5 +17,6 @@ export const serverConfigFactory = (context?: Context | ContextFunction): Config
     playground: {
         endpoint: config.get<string>('graphql.playground.endpoint'),
     },
+    introspection: true,
     extensions: [() => new LoggingExtension()],
 });
