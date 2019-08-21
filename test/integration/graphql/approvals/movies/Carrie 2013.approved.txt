@@ -1,0 +1,30 @@
+{
+  "data": {
+    "movies": [
+      {
+        "info": {
+          "actors": [
+            "Chloe Grace Moretz",
+            "Judy Greer",
+            "Julianne Moore"
+          ],
+          "directors": [
+            "Kimberly Peirce"
+          ],
+          "genres": [
+            "Drama",
+            "Horror"
+          ],
+          "imageUrl": null,
+          "plot": "A reimagining of the classic horror tale about Carrie White, a shy girl outcast by her peers and sheltered by her deeply religious mother, who unleashes telekinetic terror on her small town after being pushed too far at her senior prom.",
+          "rank": 31,
+          "rating": null,
+          "releaseDate": null,
+          "runningTimeSecs": null
+        },
+        "title": "Carrie",
+        "year": 2013
+      }
+    ]
+  }
+}

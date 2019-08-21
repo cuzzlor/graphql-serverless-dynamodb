@@ -1,5 +1,4 @@
 import { DataMapper } from '@aws/dynamodb-data-mapper';
-import { equals } from '@aws/dynamodb-expressions';
 import { inject, injectable } from 'inversify';
 import { Movie } from '../data/movies/Movie';
 import { MovieQueryInput } from '../data/movies/MovieQueryInput';
@@ -13,24 +12,10 @@ export class MovieService extends DynamoDbService {
     }
 
     public async query(input: MovieQueryInput): Promise<Movie[]> {
-        const queryInput: any = {
-            valueConstructor: Movie,
-            keyCondition: {
-                hashKey: input.title,
-            },
-        };
-
-        if (input.year) {
-            queryInput.keyCondition.rangeKey = equals(input.year);
-        }
-
-        const iterator = this.mapper.query<Movie>(queryInput);
-
         const results = new Array<Movie>();
-        for await (const movie of iterator) {
+        for await (const movie of this.mapper.query(Movie, input)) {
             results.push(movie);
         }
-
         return results;
     }
 }

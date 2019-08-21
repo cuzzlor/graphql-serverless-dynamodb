@@ -1,4 +1,4 @@
 export interface MovieQueryInput {
     title: string;
-    year?: number;
+    year: number;
 }

@@ -1,0 +1,26 @@
+config:
+    target: '{{$processEnvironment.TARGET}}'
+    processor: 'beforeRequest.js'
+    payload:
+        - path: '{{$processEnvironment.PAYLOAD}}'
+          fields:
+              - 'queryPath'
+              - 'variables'
+    phases:
+        - duration: 30
+          arrivalRate: 1
+          name: '30 second warmup'
+        - duration: '{{$processEnvironment.DURATION}}'
+          arrivalRate: '{{$processEnvironment.ARRIVAL_RATE}}'
+          name: 'Sustained load'
+    ensure:
+        maxErrorRate: 10
+
+scenarios:
+    - flow:
+          - post:
+                url: '/graphql'
+                beforeRequest: 'beforeRequest'
+                json:
+                    query: '{{query}}'
+                    variables: '{{variables}}'

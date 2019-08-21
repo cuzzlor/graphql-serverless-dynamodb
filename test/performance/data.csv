@@ -1,0 +1,2 @@
+../integration/graphql/approvals/albums/query.graphql,"{""albumIds"": [1,2,3]}"
+../integration/graphql/approvals/albums/query.graphql,"{""albumIds"": [4,5,6]}"

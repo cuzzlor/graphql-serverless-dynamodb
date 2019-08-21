@@ -18,5 +18,8 @@
     },
     "dynamodb": {
         "tableNamePrefix": "test_"
+    },
+    "integrationTest": {
+        "url": "http://localhost:3000"
     }
 }

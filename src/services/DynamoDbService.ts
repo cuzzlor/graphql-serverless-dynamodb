@@ -1,4 +1,4 @@
-import { DataMapper } from '@aws/dynamodb-data-mapper';
+import { DataMapper, SyncOrAsyncIterable } from '@aws/dynamodb-data-mapper';
 import { ZeroArgumentsConstructor } from '@aws/dynamodb-data-marshaller';
 import * as fs from 'fs';
 import { inject, injectable } from 'inversify';
@@ -12,12 +12,12 @@ export class DynamoDbService {
         this.mapper = mapper;
     }
 
-    public async putItems<T>(items: T[]) {
-        const batchReportSize = 100;
+    public async batchPut<T>(items: SyncOrAsyncIterable<T>) {
+        const reportEvery = 100;
         let persisted = 0;
-        const log = () => logger.verbose(`batch put ${persisted} of ${items.length}`);
+        const log = () => logger.verbose(`batch put ${persisted}`);
         for await (const _ of this.mapper.batchPut<T>(items)) {
-            if (++persisted % batchReportSize === 0) {
+            if (++persisted % reportEvery === 0) {
                 log();
             }
         }
@@ -26,6 +26,6 @@ export class DynamoDbService {
 
     public async batchLoadFromFile(path: string, valueConstructor: ZeroArgumentsConstructor<any>) {
         const items: any[] = JSON.parse(fs.readFileSync(path, 'utf8'));
-        this.putItems(items.map(item => Object.assign(new valueConstructor(), item)));
+        this.batchPut(items.map(item => Object.assign(new valueConstructor(), item)));
     }
 }

@@ -1,8 +1,21 @@
 type Query {
-    movies(title: String!, year: Int): [Movie!]
+    movies(title: String!, year: Int!): [Movie!]
 }
 
 type Movie {
     title: String!
     year: Int!
+    info: MovieInfo!
+}
+
+type MovieInfo {
+    directors: [String!]
+    releaseDate: String
+    rating: Float
+    genres: [String!]
+    imageUrl: String
+    plot: String
+    rank: Int
+    runningTimeSecs: Int
+    actors: [String!]
 }
