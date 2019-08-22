@@ -7,6 +7,7 @@ import { EndHandler, GraphQLResponse } from 'graphql-extensions';
 import { Logger } from 'winston';
 import { GraphQLContext } from '../GraphQLContext';
 import { TYPES } from '../TYPES';
+import _ from 'lodash';
 
 export class LoggingExtension extends GraphQLExtension<GraphQLContext> {
     public requestDidStart?(options: {
@@ -46,7 +47,9 @@ export class LoggingExtension extends GraphQLExtension<GraphQLContext> {
             response.extensions.tracing &&
             response.extensions.tracing.execution.resolvers.length
         ) {
-            logger.verbose('graphql trace', { tracing: response.extensions.tracing });
+            const tracing = _.clone(response.extensions.tracing);
+            delete tracing.execution;
+            logger.verbose('graphql trace', { tracing });
         }
 
         logger.close();
