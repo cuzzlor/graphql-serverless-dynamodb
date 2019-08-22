@@ -2,6 +2,7 @@
     "graphql": {
         "debug": true,
         "tracing": true,
+        "logTracing": true,
         "playground": {
             "endpoint": "/test/graphql"
         }

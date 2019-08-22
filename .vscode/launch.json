@@ -9,7 +9,13 @@
             "request": "launch",
             "name": "debug",
             "runtimeExecutable": "npx",
-            "runtimeArgs": ["ts-node-dev", "--inspect-brk=9229", "${workspaceFolder}/src/app.ts"],
+            "runtimeArgs": [
+                "ts-node-dev",
+                "--inspect-brk=9229",
+                "-r",
+                "dotenv/config",
+                "${workspaceFolder}/src/app.ts"
+            ],
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
             "port": 9229,
@@ -18,8 +24,7 @@
             "env": {
                 "NODE_ENV": "dev",
                 "PORT": "3000"
-            },
-            "envFile": "${workspaceFolder}/.env"
+            }
         },
         {
             "type": "node",

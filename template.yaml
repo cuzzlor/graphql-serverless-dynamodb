@@ -25,7 +25,7 @@ Resources:
             Handler: src/lambda.handler
             CodeUri: .
             Runtime: nodejs10.x
-            MemorySize: 128
+            MemorySize: 196
             Timeout: 10
             Tracing: Active
             Policies:

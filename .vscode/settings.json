@@ -11,6 +11,6 @@
     "mochaExplorer.mochaPath": "node_modules/mocha",
     "mochaExplorer.logpanel": false,
     "editor.codeActionsOnSave": {
-        "source.organizeImports": true
+        "source.organizeImports": false
     }
 }

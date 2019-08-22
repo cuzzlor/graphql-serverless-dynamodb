@@ -1,4 +1,5 @@
 import config from 'config';
+import _ from 'lodash';
 import { format, Format, TransformableInfo } from 'logform';
 import { createLogger, LoggerOptions, transports } from 'winston';
 import * as Transport from 'winston-transport';
@@ -30,14 +31,18 @@ if (config.get<boolean>('logging.transports.console.enabled')) {
     defaultTransports.push(
         new transports.Console({
             format: consoleFormat,
+            handleExceptions: true,
         }),
     );
 }
 
-export const createDefaultLogger = () =>
-    createLogger({
-        transports: defaultTransports,
-        ...config.get<Partial<LoggerOptions>>('logging.loggers.default'),
-    });
+export const createDefaultLogger = (options?: Partial<LoggerOptions>) => {
+    const mergedOptions = _.merge(
+        { ...options },
+        { ...config.get<Partial<LoggerOptions>>('logging.loggers.default') },
+        { transports: defaultTransports },
+    );
+    return createLogger(mergedOptions);
+};
 
 export const logger = createDefaultLogger();
