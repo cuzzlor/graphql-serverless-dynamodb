@@ -1,8 +1,9 @@
 import { attribute } from '@aws/dynamodb-data-mapper-annotations';
+import { MovieInfoInput } from '../../model/MovieInfoInput';
 
-export class MovieInfo {
-    @attribute({ memberType: 'String' })
-    public directors!: Set<string>;
+export class MovieInfo implements MovieInfoInput {
+    @attribute({ memberType: { type: 'String' } })
+    public directors!: string[];
 
     @attribute({ attributeName: 'release_date' })
     public releaseDate!: string;
@@ -10,8 +11,8 @@ export class MovieInfo {
     @attribute()
     public rating!: number;
 
-    @attribute({ memberType: 'String' })
-    public genres!: Set<string>;
+    @attribute({ memberType: { type: 'String' } })
+    public genres!: string[];
 
     @attribute({ attributeName: 'image_url' })
     public imageUrl!: string;
@@ -25,6 +26,6 @@ export class MovieInfo {
     @attribute({ attributeName: 'running_time_secs' })
     public runningTimeSecs!: number;
 
-    @attribute({ memberType: 'String' })
-    public actors!: Set<string>;
+    @attribute({ memberType: { type: 'String' } })
+    public actors!: string[];
 }

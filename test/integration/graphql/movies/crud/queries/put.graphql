@@ -1,0 +1,17 @@
+mutation PutMovie($movie: MovieInput) {
+    putMovie(movie: $movie) {
+        title
+        year
+        info {
+            directors
+            releaseDate
+            rating
+            genres
+            imageUrl
+            plot
+            rank
+            runningTimeSecs
+            actors
+        }
+    }
+}

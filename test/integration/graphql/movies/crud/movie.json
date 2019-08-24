@@ -1,0 +1,15 @@
+{
+    "title": "Blah Blah",
+    "year": 2019,
+    "info": {
+        "directors": ["Sam Curry"],
+        "releaseDate": "2019-09-09T00:00:00Z",
+        "rating": 9.9,
+        "genres": ["Crime", "Drama", "Thriller"],
+        "imageUrl": "http://ia.media-imdb.com/images/blah-blah.jpg",
+        "plot": "Lorem Ipsum dolsot blah de blah.",
+        "rank": 2,
+        "runningTimeSecs": 60,
+        "actors": ["Mary Smith", "Jack Jones"]
+    }
+}

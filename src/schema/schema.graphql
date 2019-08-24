@@ -2,6 +2,12 @@ type Query {
     movies(title: String!, year: Int!): [Movie!]
 }
 
+type Mutation {
+    putMovie(movie: MovieInput): Movie!
+    updateMovie(movie: MovieInput): Movie!
+    deleteMovies(title: String!, year: Int!): [Movie!]
+}
+
 type Movie {
     title: String!
     year: Int!
@@ -9,6 +15,24 @@ type Movie {
 }
 
 type MovieInfo {
+    directors: [String!]
+    releaseDate: String
+    rating: Float
+    genres: [String!]
+    imageUrl: String
+    plot: String
+    rank: Int
+    runningTimeSecs: Int
+    actors: [String!]
+}
+
+input MovieInput {
+    title: String!
+    year: Int!
+    info: MovieInfoInput!
+}
+
+input MovieInfoInput {
     directors: [String!]
     releaseDate: String
     rating: Float

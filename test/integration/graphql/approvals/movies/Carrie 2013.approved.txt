@@ -5,8 +5,8 @@
         "info": {
           "actors": [
             "Chloe Grace Moretz",
-            "Judy Greer",
-            "Julianne Moore"
+            "Julianne Moore",
+            "Judy Greer"
           ],
           "directors": [
             "Kimberly Peirce"

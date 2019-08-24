@@ -1,0 +1,6 @@
+mutation DeleteMovies($title: String!, $year: Int!) {
+    deleteMovies(title: $title, year: $year) {
+        title
+        year
+    }
+}

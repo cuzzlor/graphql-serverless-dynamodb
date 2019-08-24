@@ -1,0 +1,17 @@
+mutation UpdateMovie($movie: MovieInput) {
+    updateMovie(movie: $movie) {
+        title
+        year
+        info {
+            directors
+            releaseDate
+            rating
+            genres
+            imageUrl
+            plot
+            rank
+            runningTimeSecs
+            actors
+        }
+    }
+}
