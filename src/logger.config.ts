@@ -25,10 +25,7 @@ if (config.get<boolean>('logging.transports.console.enabled')) {
             }),
         );
     } else {
-        consoleFormat = format.combine(
-            format.timestamp(),
-            format.printf((info: TransformableInfo) => JSON.stringify(info)),
-        );
+        consoleFormat = format.combine(format.timestamp(), format.json());
     }
 
     defaultTransports.push(
