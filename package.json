@@ -20,7 +20,8 @@
         "delete-stack": "aws cloudformation delete-stack --stack-name graphql-serverless",
         "batch-load-movies": "node -r dotenv/config -r ts-node/register ./util/batch-load.ts ../data/moviedata.json",
         "generate-perf-test-data": "json2csv -i data/moviedata.json -f title,year -o test/performance/data/movies.csv",
-        "test": "npx mocha --no-timeouts --colors -r ts-node/register test/**/*.spec.ts",
+        "run-then-test": "concurrently -k -s first \"SET CONSOLE_LOGGING_DISABLED=true&& npm run run\" \"wait-on tcp:3000 -t 15000 && npm run test\"",
+        "test": "npx mocha --no-timeouts --colors -r dotenv/config -r ts-node/register test/**/*.spec.ts",
         "test:unit": "npx mocha --no-timeouts --colors -r ts-node/register test/unit/**/*.spec.ts",
         "test:integration": "npx mocha --no-timeouts --colors -r ts-node/register test/integration/**/*.spec.ts",
         "test:perf": "dotenv -e test/performance/.env -- artillery -o test/performance/results/output.json run test/performance/artillery.yml",
@@ -64,6 +65,7 @@
         "axios": "^0.19.0",
         "bestzip": "^2.1.4",
         "chai": "^4.2.0",
+        "concurrently": "^4.1.2",
         "cpx": "^1.5.0",
         "dotenv-cli": "^2.0.1",
         "git-describe": "^4.0.4",
@@ -77,6 +79,7 @@
         "tslint-config-prettier": "^1.18.0",
         "tslint-eslint-rules": "^5.4.0",
         "typescript": "^3.5.3",
+        "wait-on": "^3.3.0",
         "webpack": "^4.39.2",
         "webpack-cli": "^3.3.7"
     }

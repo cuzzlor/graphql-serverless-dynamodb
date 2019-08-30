@@ -11,6 +11,7 @@
         "transports": {
             "console": {
                 "enabled": true,
+                "silent": false,
                 "pretty": false
             }
         },

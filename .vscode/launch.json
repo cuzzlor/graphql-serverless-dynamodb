@@ -20,11 +20,7 @@
             "internalConsoleOptions": "neverOpen",
             "port": 9229,
             "restart": true,
-            "timeout": 15000,
-            "env": {
-                "NODE_ENV": "dev",
-                "PORT": "3000"
-            }
+            "timeout": 15000
         },
         {
             "type": "node",
@@ -33,6 +29,8 @@
             "runtimeExecutable": "npx",
             "runtimeArgs": [
                 "node",
+                "-r",
+                "dotenv/config",
                 "-r",
                 "ts-node/register",
                 "--inspect-brk=9229",
@@ -44,10 +42,6 @@
             "port": 9229,
             "restart": true,
             "timeout": 15000,
-            "env": {
-                "NODE_ENV": "dev",
-                "PORT": "3000"
-            },
             "envFile": "${workspaceFolder}/.env"
         }
     ]

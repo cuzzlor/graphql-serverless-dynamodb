@@ -32,6 +32,7 @@ if (config.get<boolean>('logging.transports.console.enabled')) {
         new transports.Console({
             format: consoleFormat,
             handleExceptions: true,
+            silent: config.get<boolean>('logging.transports.console.silent'),
         }),
     );
 }

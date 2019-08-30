@@ -2,7 +2,7 @@
     "logging": {
         "transports": {
             "console": {
-                "enabled": "CONSOLE_LOGGING_ENABLED"
+                "silent": "CONSOLE_LOGGING_DISABLED"
             }
         }
     }
