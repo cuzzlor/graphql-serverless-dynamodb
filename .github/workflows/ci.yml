@@ -16,11 +16,17 @@ jobs:
               uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
-            - name: npm install, lint, compile, run and test
+            - name: npm install
               run: |
                   npm install
+            - name: lint
+              run: |
                   npm run lint
+            - name: compile
+              run: |
                   npm run compile
+            - name: npm run and test
+              run: |
                   npm run run-then-test
               env:
                   NODE_ENV: dev

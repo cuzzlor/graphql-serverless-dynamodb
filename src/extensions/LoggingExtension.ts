@@ -4,10 +4,10 @@ import { Request } from 'apollo-server-env';
 import config from 'config';
 import { DocumentNode, print } from 'graphql';
 import { EndHandler, GraphQLResponse } from 'graphql-extensions';
+import _ from 'lodash';
 import { Logger } from 'winston';
 import { GraphQLContext } from '../GraphQLContext';
 import { TYPES } from '../TYPES';
-import _ from 'lodash';
 
 export class LoggingExtension extends GraphQLExtension<GraphQLContext> {
     public requestDidStart?(options: {
