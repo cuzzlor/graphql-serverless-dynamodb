@@ -7,7 +7,6 @@ export const approvals = require('approvals');
 
 // config for all environments
 approvals.configure({
-    normalizeLineEndingsTo: '\r\n',
     errorOnStaleApprovedFiles: false,
     failOnLineEndingDifferences: false,
 });
