@@ -1,0 +1,15 @@
+{
+    "logging": {
+        "transports": {
+            "console": {
+                "silent": true
+            }
+        }
+    },
+    "dynamodb": {
+        "tableNamePrefix": "test_"
+    },
+    "integrationTest": {
+        "url": "http://localhost:3000"
+    }
+}

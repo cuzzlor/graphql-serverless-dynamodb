@@ -12,7 +12,7 @@
         "loggers": {
             "default": {
                 "level": "debug",
-                "defaultMeta": { "environment": "test" }
+                "defaultMeta": { "environment": "dev" }
             }
         }
     },
