@@ -1,6 +1,8 @@
 name: Node CI
 
-on: [push]
+on:
+    push:
+        branches: '!master'
 
 jobs:
     build:
@@ -19,6 +21,9 @@ jobs:
             - name: npm install
               run: |
                   npm install
+            - name: npm audit
+              run: |
+                  npm run audit
             - name: lint
               run: |
                   npm run lint
