@@ -23,9 +23,7 @@ jobs:
                   npm install
             - name: build, package and deploy
               run: |
-                  npm run build
-                  npm run package
-                  npm run deploy-stack
+                  npm run build-package-deploy
               env:
                   AWS_REGION: us-east-1
                   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

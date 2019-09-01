@@ -17,7 +17,7 @@
         "package:zip": "cd dist && rimraf ../package.zip && bestzip ../package.zip *",
         "package": "cpx template.yaml dist && cd dist && aws cloudformation package --template-file template.yaml --output-template-file ../serverless-output.yaml --s3-bucket curry.laksa.lambda.graphql",
         "deploy-stack": "aws cloudformation deploy --template-file serverless-output.yaml --capabilities CAPABILITY_IAM --stack-name graphql-serverless --parameter-overrides EnvName=test",
-        "package-deploy-stack": "npm run build && npm run package && npm run deploy-stack",
+        "build-package-deploy": "npm run build && npm run package && npm run deploy-stack",
         "delete-stack": "aws cloudformation delete-stack --stack-name graphql-serverless",
         "batch-load-movies": "node -r dotenv/config -r ts-node/register ./util/batch-load.ts ../data/moviedata.json",
         "generate-perf-test-data": "json2csv -i data/moviedata.json -f title,year -o test/performance/data/movies.csv",
