@@ -21,31 +21,12 @@ jobs:
             - name: npm install
               run: |
                   npm install
-            - name: npm audit
-              run: |
-                  npm run audit
-            - name: lint
-              run: |
-                  npm run lint
-            - name: compile
-              run: |
-                  npm run compile
-            - name: run and test
-              run: |
-                  npm run run-then-test
-            - name: build
+            - name: build, package and deploy
               run: |
                   npm run build
-            - name: package
-              run: |
                   npm run package
-            - name: deploy to test
-              run: |
                   npm run deploy-stack
               env:
-                  NODE_ENV: ci
-                  PORT: 3000
-                  CONSOLE_LOGGING_DISABLED: true
                   AWS_REGION: us-east-1
                   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
                   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
