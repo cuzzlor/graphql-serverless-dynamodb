@@ -1,8 +1,8 @@
-name: CI
+name: CD to test
 
 on:
     push:
-        branches: '!master'
+        branches: master
 
 jobs:
     build:
@@ -30,9 +30,18 @@ jobs:
             - name: compile
               run: |
                   npm run compile
-            - name: npm run and test
+            - name: run and test
               run: |
                   npm run run-then-test
+            - name: build
+              run: |
+                  npm run build
+            - name: package
+              run: |
+                  npm run package
+            - name: deploy to test
+              run: |
+                  npm run deploy-stack
               env:
                   NODE_ENV: ci
                   PORT: 3000
