@@ -21,7 +21,7 @@
         "delete-stack": "aws cloudformation delete-stack --stack-name graphql-serverless",
         "batch-load-movies": "node -r dotenv/config -r ts-node/register ./util/batch-load.ts ../data/moviedata.json",
         "generate-perf-test-data": "json2csv -i data/moviedata.json -f title,year -o test/performance/data/movies.csv",
-        "run-then-test": "concurrently -k -s first \"npm run run\" \"wait-on tcp:3000 -t 15000 && npm run test\"",
+        "run-then-test": "concurrently -k -s first \"npm start\" \"wait-on tcp:3000 -t 15000 && npm run test\"",
         "test": "npx mocha --no-timeouts --colors -r dotenv/config -r ts-node/register test/**/*.spec.ts",
         "test:unit": "npx mocha --no-timeouts --colors -r ts-node/register test/unit/**/*.spec.ts",
         "test:integration": "npx mocha --no-timeouts --colors -r ts-node/register test/integration/**/*.spec.ts",
