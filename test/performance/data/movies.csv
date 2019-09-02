@@ -1,4 +1,3 @@
-"queryPath","variables"
 "../integration/graphql/approvals/movies/query.graphql","{""title"":""Rush"",""year"":2013}"
 "../integration/graphql/approvals/movies/query.graphql","{""title"":""Prisoners"",""year"":2013}"
 "../integration/graphql/approvals/movies/query.graphql","{""title"":""The Hunger Games: Catching Fire"",""year"":2013}"
