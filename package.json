@@ -25,8 +25,8 @@
         "test": "npx mocha --no-timeouts --colors -r dotenv/config -r ts-node/register test/**/*.spec.ts",
         "test:unit": "npx mocha --no-timeouts --colors -r ts-node/register test/unit/**/*.spec.ts",
         "test:integration": "npx mocha --no-timeouts --colors -r ts-node/register test/integration/**/*.spec.ts",
-        "test:perf": "dotenv -e test/performance/.env -- artillery -o test/performance/results/output.json run test/performance/artillery.yml",
-        "test:perf-report": "artillery report test/performance/results/output.json -o test/performance/results/output.html"
+        "perf-test": "dotenv -e test/performance/.env -- artillery -o test/performance/results/output.json run test/performance/artillery.yml",
+        "perf-report": "artillery report test/performance/results/output.json -o test/performance/results/report.html"
     },
     "dependencies": {
         "@aws/dynamodb-data-mapper": "^0.7.3",
