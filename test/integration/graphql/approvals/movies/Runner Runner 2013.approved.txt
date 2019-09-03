@@ -5,8 +5,8 @@
         "info": {
           "actors": [
             "Ben Affleck",
-            "Justin Timberlake",
-            "Gemma Arterton"
+            "Gemma Arterton",
+            "Justin Timberlake"
           ],
           "directors": [
             "Brad Furman"
