@@ -55,7 +55,7 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+/.env
 
 # next.js build output
 .next
@@ -64,7 +64,8 @@ typings/
 dist
 
 # ignore perf test results
-test/performance/results
+test/performance/results/output.json
+test/performance/results/report.html
 
 # ignore cloudformation output template
 serverless-output.yaml

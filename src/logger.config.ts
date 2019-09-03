@@ -31,7 +31,7 @@ if (config.get<boolean>('logging.transports.console.enabled')) {
     defaultTransports.push(
         new transports.Console({
             format: consoleFormat,
-            handleExceptions: true,
+            handleExceptions: false,
             silent: config.get<boolean>('logging.transports.console.silent'),
         }),
     );
