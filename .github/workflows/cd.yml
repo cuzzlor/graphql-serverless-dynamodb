@@ -4,6 +4,12 @@ on:
     push:
         branches: master
 
+x-aws-env: &aws-env
+    AWS_REGION: us-east-1
+    AWS_DEFAULT_REGION: us-east-1
+    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -36,15 +42,11 @@ jobs:
                   NODE_ENV: ci
                   PORT: 3000
                   CONSOLE_LOGGING_DISABLED: true
-                  AWS_REGION: us-east-1
-                  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  <<: *aws-env
             - name: build, package and deploy
               run: |
                   npm run build:webpack
                   npm run package:cf
                   npm run deploy:cf
               env:
-                  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                  AWS_DEFAULT_REGION: us-east-1
+                  <<: *aws-env
