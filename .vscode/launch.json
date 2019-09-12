@@ -41,8 +41,7 @@
             "internalConsoleOptions": "neverOpen",
             "port": 9229,
             "restart": true,
-            "timeout": 15000,
-            "envFile": "${workspaceFolder}/.env"
+            "timeout": 15000
         }
     ]
 }
