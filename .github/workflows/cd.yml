@@ -4,12 +4,6 @@ on:
     push:
         branches: master
 
-x-aws-env: &aws-env
-    AWS_REGION: us-east-1
-    AWS_DEFAULT_REGION: us-east-1
-    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -42,8 +36,10 @@ jobs:
                   NODE_ENV: ci
                   PORT: 3000
                   CONSOLE_LOGGING_DISABLED: true
-                  <<: *aws-env
-            - name: npm version
+                  AWS_REGION: us-east-1
+                  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            - name: npm version patch
               run: |
                   npm version patch
             - name: build, package and deploy
@@ -52,4 +48,6 @@ jobs:
                   npm run package:cf
                   npm run deploy:cf
               env:
-                  <<: *aws-env
+                  AWS_DEFAULT_REGION: us-east-1
+                  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
