@@ -65,7 +65,7 @@
         "@types/uuid": "^3.4.5",
         "approvals": "^3.0.5",
         "artillery": "^1.6.0-24",
-        "axios": "^0.19.0",
+        "axios": "^0.21.1",
         "bestzip": "^2.1.4",
         "chai": "^4.2.0",
         "concurrently": "^4.1.2",
