@@ -73,7 +73,7 @@
         "dotenv-cli": "^2.0.1",
         "git-describe": "^4.0.4",
         "json2csv": "^4.5.2",
-        "mocha": "^6.2.0",
+        "mocha": "^10.2.0",
         "npm-audit-ci-wrapper": "^2.3.0",
         "prettier": "^1.18.2",
         "ts-loader": "^6.0.4",
